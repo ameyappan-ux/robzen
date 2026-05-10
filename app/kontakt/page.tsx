@@ -17,7 +17,7 @@ export default function KontaktPage() {
             Schreiben Sie uns — wir melden uns innerhalb eines Werktages.
           </p>
           <a
-            href="https://wa.me/491234567890?text=Hallo%2C%20ich%20interessiere%20mich%20f%C3%BCr%20ROBZEN."
+            href="https://wa.me/491731739704?text=Hallo%2C%20ich%20interessiere%20mich%20f%C3%BCr%20ROBZEN."
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 mt-5 rounded-lg border border-green-500/30 bg-green-500/10 px-4 py-2.5 text-sm font-medium text-green-400 hover:bg-green-500/20 transition-colors"
