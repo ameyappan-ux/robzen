@@ -1,7 +1,8 @@
 import Anthropic from '@anthropic-ai/sdk'
+import { env } from '@/lib/env'
 
 const client = new Anthropic({
-  apiKey: process.env.ANTHROPIC_API_KEY,
+  apiKey: env.ANTHROPIC_API_KEY,
 })
 
 const SYSTEM_PROMPT = `Du bist ZENI, der KI-Assistent von ROBZEN — einem neutralen Automatisierungsberater für den deutschen Mittelstand.
@@ -35,13 +36,6 @@ Felder: prozesstyp, mitarbeiter, schichten, ziel, budget, zeithorizont, raeumlic
 Starte das Gespräch mit Frage 1 sobald der User "Hallo" oder ähnliches sagt, oder direkt wenn keine andere Einleitung kommt.`
 
 export async function POST(request: Request) {
-  if (!process.env.ANTHROPIC_API_KEY) {
-    return new Response(JSON.stringify({ error: 'API key not configured' }), {
-      status: 500,
-      headers: { 'Content-Type': 'application/json' },
-    })
-  }
-
   let body: { messages: Anthropic.MessageParam[] }
   try {
     body = await request.json()

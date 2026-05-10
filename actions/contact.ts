@@ -1,8 +1,9 @@
 'use server'
 
 import { Resend } from 'resend'
+import { env } from '@/lib/env'
 
-const resend = new Resend(process.env.RESEND_API_KEY)
+const resend = new Resend(env.RESEND_API_KEY)
 
 export interface ContactState {
   success: boolean
@@ -31,11 +32,7 @@ export async function sendContactEmail(
     return { success: false, error: 'Bitte geben Sie eine gültige E-Mail-Adresse ein.' }
   }
 
-  if (!process.env.RESEND_API_KEY) {
-    return { success: false, error: 'E-Mail-Versand nicht konfiguriert.' }
-  }
-
-  const toEmail = process.env.CONTACT_EMAIL ?? 'kontakt@robzen.de'
+  const toEmail = env.CONTACT_EMAIL
 
   function escHtml(s: string) {
     return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;')

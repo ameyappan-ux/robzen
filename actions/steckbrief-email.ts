@@ -1,8 +1,9 @@
 'use server'
 
 import { Resend } from 'resend'
+import { env } from '@/lib/env'
 
-const resend = new Resend(process.env.RESEND_API_KEY)
+const resend = new Resend(env.RESEND_API_KEY)
 
 interface SteckbriefData {
   prozesstyp?: string
@@ -27,7 +28,7 @@ function row(label: string, value: string | undefined) {
 }
 
 export async function sendSteckbriefEmail(data: SteckbriefData): Promise<{ ok: boolean }> {
-  if (!data.email || !process.env.RESEND_API_KEY) return { ok: false }
+  if (!data.email) return { ok: false }
 
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
   if (!emailRegex.test(data.email)) return { ok: false }
