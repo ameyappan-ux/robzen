@@ -18,12 +18,16 @@ describe('automatisierungsScore', () => {
     expect(automatisierungsScore({ budget: '<50k', ziel: 'Kapazität', mitarbeiter: '3', zeithorizont: '6 Monate', prozess: 'Montage Linie' })).toBe('Niedrig')
   })
 
-  it('returns Niedrig for unklar budget', () => {
-    expect(automatisierungsScore({ budget: 'unklar', ziel: 'Kapazität', mitarbeiter: '3', zeithorizont: '6 Monate', prozess: 'Montage Linie' })).toBe('Niedrig')
+  it('returns Mittel for unklar budget — early-stage buyer should not get Niedrig', () => {
+    expect(automatisierungsScore({ budget: 'unklar', ziel: 'Kapazität', mitarbeiter: '3', zeithorizont: '6 Monate', prozess: 'Montage Linie' })).toBe('Mittel')
   })
 
-  it('returns Niedrig for zeithorizont > 1 Jahr', () => {
-    expect(automatisierungsScore({ budget: '50-150k', ziel: 'Kapazität', mitarbeiter: '3', zeithorizont: '2 Jahre', prozess: 'Montage Linie' })).toBe('Niedrig')
+  it('returns Mittel for "1–2 Jahre" — valid wizard option must not trigger Niedrig', () => {
+    expect(automatisierungsScore({ budget: '50-150k', ziel: 'Kapazität', mitarbeiter: '3', zeithorizont: '1–2 Jahre', prozess: 'Montage Linie' })).toBe('Hoch')
+  })
+
+  it('returns Niedrig for zeithorizont > 2 Jahre', () => {
+    expect(automatisierungsScore({ budget: '50-150k', ziel: 'Kapazität', mitarbeiter: '3', zeithorizont: '3 Jahre', prozess: 'Montage Linie' })).toBe('Niedrig')
   })
 
   it('returns Niedrig for vague prozess (<10 chars)', () => {

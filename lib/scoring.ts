@@ -10,7 +10,7 @@ export interface CheckInput {
 
 const ZIELE_HOCH = ['kapazität', 'kapazitaet', 'fachkräfte', 'fachkraefte', 'personal']
 const BUDGETS_HOCH: BudgetRange[] = ['50-150k', '150-500k', '>500k']
-const BUDGETS_NIEDRIG: BudgetRange[] = ['<50k', 'unklar']
+const BUDGETS_NIEDRIG: BudgetRange[] = ['<50k']
 
 function parseMitarbeiter(s: string): number {
   const n = parseInt(s.replace(/[^0-9]/g, ''), 10)
@@ -20,7 +20,7 @@ function parseMitarbeiter(s: string): number {
 function isZeitHorizontLang(zeithorizont: string): boolean {
   const lower = zeithorizont.toLowerCase()
   const match = lower.match(/(\d+)\s*(jahr|jahre|years?)/)
-  if (match) return parseInt(match[1], 10) > 1
+  if (match) return parseInt(match[1], 10) > 2
   return false
 }
 
