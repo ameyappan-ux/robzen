@@ -191,6 +191,7 @@ export default function HomePage() {
             <p className="text-xs font-semibold uppercase tracking-wider text-muted-2 mb-3">Projektbegleitung</p>
             <p className="text-2xl font-bold mb-1">Nach Aufwand</p>
             <p className="text-sm text-muted">Wenn Sie möchten, dass wir aktiv vermitteln und begleiten — sprechen wir über Ihr Projekt.</p>
+            <p className="mt-3 inline-block rounded-full border border-border px-2 py-0.5 text-xs text-muted-2">Indikative Preisstruktur</p>
           </div>
         </div>
         <p className="mt-6 text-xs text-muted-2">Wir verdienen keine Provision von Anbietern auf Ihre Kaufentscheidung. Unser Interesse ist Ihr Projekterfolg.</p>
