@@ -2,16 +2,19 @@
 
 import Link from 'next/link'
 import { useState } from 'react'
+import { usePathname } from 'next/navigation'
 import { Menu, X } from 'lucide-react'
 
 const links = [
   { href: '/automatisierungs-check', label: 'Automatisierungs-Check' },
   { href: '/use-cases', label: 'Use Cases' },
   { href: '/projekt-starten', label: 'Projekt starten' },
+  { href: '/kontakt', label: 'Kontakt' },
 ]
 
 export default function Nav() {
   const [open, setOpen] = useState(false)
+  const pathname = usePathname()
 
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-background/95 backdrop-blur-sm">
@@ -27,7 +30,7 @@ export default function Nav() {
             <Link
               key={l.href}
               href={l.href}
-              className="text-sm text-muted hover:text-foreground transition-colors"
+              className={`text-sm transition-colors ${pathname.startsWith(l.href) ? 'text-foreground font-medium' : 'text-muted hover:text-foreground'}`}
             >
               {l.label}
             </Link>
@@ -60,7 +63,7 @@ export default function Nav() {
             <Link
               key={l.href}
               href={l.href}
-              className="text-sm text-muted hover:text-foreground transition-colors"
+              className={`text-sm transition-colors ${pathname.startsWith(l.href) ? 'text-foreground font-medium' : 'text-muted hover:text-foreground'}`}
               onClick={() => setOpen(false)}
             >
               {l.label}

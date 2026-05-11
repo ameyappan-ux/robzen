@@ -54,6 +54,20 @@ const USE_CASES: Record<string, string[]> = {
   'Durchlaufzeiten verkürzen': ['AMR-Transport', 'Cobot-Montage', 'KI-Prozesssteuerung'],
 }
 
+const BUDGET_LABEL: Record<string, string> = {
+  '<50k':      'Unter 50.000 €',
+  '50-150k':   '50.000 – 150.000 €',
+  '150-500k':  '150.000 – 500.000 €',
+  '>500k':     'Über 500.000 €',
+  'unklar':    'Noch nicht definiert',
+}
+
+const SCHICHT_LABEL: Record<string, string> = {
+  '1-Schicht':        'Einschicht (ca. 8 Std./Tag)',
+  '2-Schicht':        'Zweischicht (ca. 16 Std./Tag)',
+  '3-Schicht / 24/7': 'Dreischicht / 24/7-Betrieb',
+}
+
 function ResultContent() {
   const params = useSearchParams()
   const router = useRouter()
@@ -101,8 +115,8 @@ function ResultContent() {
           <div><dt className="text-muted-2 text-xs mb-0.5">Prozess</dt><dd className="text-foreground">{profile.prozess.slice(0, 60)}{profile.prozess.length > 60 ? '…' : ''}</dd></div>
           <div><dt className="text-muted-2 text-xs mb-0.5">Mitarbeiter</dt><dd className="text-foreground">{profile.mitarbeiter}</dd></div>
           <div><dt className="text-muted-2 text-xs mb-0.5">Ziel</dt><dd className="text-foreground">{profile.ziel}</dd></div>
-          <div><dt className="text-muted-2 text-xs mb-0.5">Budget</dt><dd className="text-foreground">{profile.budget}</dd></div>
-          <div><dt className="text-muted-2 text-xs mb-0.5">Schichten</dt><dd className="text-foreground">{profile.schichten}</dd></div>
+          <div><dt className="text-muted-2 text-xs mb-0.5">Budget</dt><dd className="text-foreground">{BUDGET_LABEL[profile.budget] ?? profile.budget}</dd></div>
+          <div><dt className="text-muted-2 text-xs mb-0.5">Schichten</dt><dd className="text-foreground">{SCHICHT_LABEL[profile.schichten] ?? profile.schichten}</dd></div>
           <div><dt className="text-muted-2 text-xs mb-0.5">Zeithorizont</dt><dd className="text-foreground">{profile.zeithorizont}</dd></div>
         </dl>
       </div>

@@ -23,30 +23,32 @@ export default function UseCaseCatalog() {
   return (
     <div>
       {/* Filter bar */}
-      <div className="flex flex-wrap gap-2 mb-8">
-        <button
-          onClick={() => setActive('Alle')}
-          className={`rounded-full border px-4 py-1.5 text-sm transition-all ${
-            active === 'Alle'
-              ? 'border-accent bg-accent-muted text-accent'
-              : 'border-border text-muted hover:border-accent/40 hover:text-foreground'
-          }`}
-        >
-          Alle ({USE_CASES.length})
-        </button>
-        {CATEGORIES.map((cat) => (
+      <div className="overflow-x-auto mb-8 -mx-6 px-6">
+        <div className="flex gap-2 w-max pb-1">
           <button
-            key={cat}
-            onClick={() => setActive(cat)}
-            className={`rounded-full border px-4 py-1.5 text-sm transition-all ${
-              active === cat
-                ? `border-accent bg-accent-muted text-accent`
+            onClick={() => setActive('Alle')}
+            className={`flex-shrink-0 rounded-full border px-4 py-1.5 text-sm transition-all ${
+              active === 'Alle'
+                ? 'border-accent bg-accent-muted text-accent'
                 : 'border-border text-muted hover:border-accent/40 hover:text-foreground'
             }`}
           >
-            {cat} ({USE_CASES.filter((u) => u.category === cat).length})
+            Alle ({USE_CASES.length})
           </button>
-        ))}
+          {CATEGORIES.map((cat) => (
+            <button
+              key={cat}
+              onClick={() => setActive(cat)}
+              className={`flex-shrink-0 rounded-full border px-4 py-1.5 text-sm transition-all ${
+                active === cat
+                  ? 'border-accent bg-accent-muted text-accent'
+                  : 'border-border text-muted hover:border-accent/40 hover:text-foreground'
+              }`}
+            >
+              {cat} ({USE_CASES.filter((u) => u.category === cat).length})
+            </button>
+          ))}
+        </div>
       </div>
 
       {/* Cards grid */}

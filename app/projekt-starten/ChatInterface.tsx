@@ -233,6 +233,16 @@ function ChatContent() {
     <div className="flex h-[calc(100vh-4rem)]">
       {/* Desktop: split screen */}
       <div className="hidden md:flex flex-1 flex-col border-r border-border">
+        {/* ZENI identity header */}
+        <div className="flex items-center gap-3 px-6 py-4 border-b border-border flex-shrink-0">
+          <div className="size-8 rounded-full bg-accent flex items-center justify-center text-background text-xs font-bold flex-shrink-0">
+            Z
+          </div>
+          <div>
+            <p className="text-sm font-semibold text-foreground leading-none">ZENI</p>
+            <p className="text-xs text-muted mt-0.5">KI-Assistent · 9 Fragen · ca. 10 Minuten</p>
+          </div>
+        </div>
         {/* Chat area */}
         <div className="flex-1 overflow-y-auto px-6 py-6 space-y-4">
           {messages.filter((m) => !(m.role === 'user' && m.content === 'Hallo, ich möchte ein Automatisierungsprojekt besprechen.')).map((msg, i) => (
@@ -308,6 +318,13 @@ function ChatContent() {
 
         {activeTab === 'chat' ? (
           <>
+            {/* ZENI identity row — mobile */}
+            <div className="flex items-center gap-2 px-4 py-2.5 border-b border-border flex-shrink-0">
+              <div className="size-6 rounded-full bg-accent flex items-center justify-center text-background text-[10px] font-bold flex-shrink-0">
+                Z
+              </div>
+              <p className="text-xs text-muted">ZENI · KI-Assistent · 9 Fragen · ca. 10 Minuten</p>
+            </div>
             <div className="flex-1 overflow-y-auto px-4 py-4 space-y-4">
               {messages.filter((m) => !(m.role === 'user' && m.content === 'Hallo, ich möchte ein Automatisierungsprojekt besprechen.')).map((msg, i) => (
                 <div key={i} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>

@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { ArrowRight, CheckCircle, Clock, ShieldCheck, TrendingUp, Zap, Users, Factory } from 'lucide-react'
+import { ArrowRight, CheckCircle, Clock, ShieldCheck, Truck, TrendingUp, Zap, Users, Factory } from 'lucide-react'
 
 const steps = [
   {
@@ -20,7 +20,7 @@ const steps = [
   {
     number: '04',
     title: 'Neutrale Beratung',
-    description: 'Wir vermitteln passende Lösungsanbieter — ohne Verkaufsprovision auf Ihre Entscheidung.',
+    description: 'Wir vermitteln passende Lösungsanbieter — ohne Provision. Ihre Entscheidung, Ihr Timing.',
   },
 ]
 
@@ -42,7 +42,7 @@ const trustPoints = [
   },
   {
     icon: Users,
-    title: 'Für GFs gemacht',
+    title: 'Für Geschäftsführer entwickelt',
     body: 'Kein Tech-Jargon. Keine Verkaufspräsentationen. Klare Zahlen, klare Optionen — damit Sie Ihren Gesellschaftern etwas vorlegen können.',
   },
 ]
@@ -50,7 +50,7 @@ const trustPoints = [
 const useCaseTeaser = [
   { label: 'Cobot-Montage', icon: Factory },
   { label: 'Palettierung', icon: Zap },
-  { label: 'AMR-Transport', icon: ArrowRight },
+  { label: 'AMR-Transport', icon: Truck },
   { label: 'Qualitätsprüfung', icon: CheckCircle },
 ]
 
@@ -194,7 +194,10 @@ export default function HomePage() {
             <p className="mt-3 inline-block rounded-full border border-border px-2 py-0.5 text-xs text-muted-2">Indikative Preisstruktur</p>
           </div>
         </div>
-        <p className="mt-6 text-xs text-muted-2">Wir verdienen keine Provision von Anbietern auf Ihre Kaufentscheidung. Unser Interesse ist Ihr Projekterfolg.</p>
+        <div className="mt-6 flex items-center gap-3 rounded-xl border border-border bg-surface px-4 py-3">
+          <ShieldCheck size={16} className="text-accent flex-shrink-0" />
+          <p className="text-sm text-muted">Wir verdienen <span className="text-foreground font-medium">keine Provision</span> von Anbietern auf Ihre Kaufentscheidung — unser Interesse ist Ihr Projekterfolg.</p>
+        </div>
       </section>
 
       {/* CTA strip */}
