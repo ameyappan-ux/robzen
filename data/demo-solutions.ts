@@ -1,0 +1,288 @@
+import type { Kategorie } from './demo-scenarios'
+
+export type Komplexitaet = 1 | 2 | 3 | 4 | 5
+
+export interface DemoSolution {
+  id: string
+  scenarioId: string
+  kategorie: Kategorie
+  title: string
+  subtitle: string
+  beschreibung: string
+  ziel: string
+  automatisierungsgrad: number
+  investitionMin: number
+  investitionMax: number
+  umsetzungsdauer: string
+  zeitersparnis: string
+  roiPotenzial: string
+  roiMonate: number
+  technischeKomplexitaet: Komplexitaet
+  integrationsaufwand: Komplexitaet
+  risiken: string[]
+  voraussetzungen: string[]
+  naechsterSchritt: string
+  empfohlen?: boolean
+}
+
+export const DEMO_SOLUTIONS: DemoSolution[] = [
+  // ── Palettierung ─────────────────────────────────────────────────────────
+  {
+    id: 'pal-cobot',
+    scenarioId: 'palettierung',
+    kategorie: 'Robotik',
+    title: 'Cobot-Palettierer',
+    subtitle: 'Universal Robots UR10e / Doosan',
+    beschreibung: 'Kollaborativer Roboter ohne Schutzgitter, der direkt neben Mitarbeitenden arbeitet. Ideal für KMU mit begrenztem Platz und wechselnden Kartonformaten.',
+    ziel: 'Palettiervolumen verdoppeln, manuelle Belastung reduzieren',
+    automatisierungsgrad: 75,
+    investitionMin: 65000, investitionMax: 110000,
+    umsetzungsdauer: '6–10 Wochen',
+    zeitersparnis: '2 Vollzeitstellen entlastet, ca. 3.200 h/Jahr',
+    roiPotenzial: '80.000–120.000 € jährliche Einsparung',
+    roiMonate: 18,
+    technischeKomplexitaet: 2,
+    integrationsaufwand: 2,
+    risiken: ['Taktrate durch Cobot-Sicherheitsgeschwindigkeit begrenzt', 'Formatwechsel erfordert Umprogrammierung'],
+    voraussetzungen: ['Stabile Förderband-Übergabe', 'Einheitliche Kartongewichte < 20 kg'],
+    naechsterSchritt: 'Machbarkeitsstudie mit Roboter-Integrator; Testlauf im Showroom',
+    empfohlen: true,
+  },
+  {
+    id: 'pal-industrie',
+    scenarioId: 'palettierung',
+    kategorie: 'Robotik',
+    title: 'Industrieroboter-Zelle',
+    subtitle: 'KUKA / Fanuc mit Sicherheitsgitter',
+    beschreibung: 'Klassische Industrieroboter-Zelle mit höherer Geschwindigkeit und Traglast. Geeignet für hohe Stückzahlen und konstante Formate.',
+    ziel: 'Maximaler Durchsatz, 3-Schicht-Betrieb möglich',
+    automatisierungsgrad: 90,
+    investitionMin: 120000, investitionMax: 220000,
+    umsetzungsdauer: '10–16 Wochen',
+    zeitersparnis: '3 Vollzeitstellen, ca. 5.000 h/Jahr',
+    roiPotenzial: '150.000–200.000 € jährliche Einsparung',
+    roiMonate: 22,
+    technischeKomplexitaet: 3,
+    integrationsaufwand: 3,
+    risiken: ['Höherer Platzbedarf für Sicherheitsgitter', 'Wartungskosten', 'Längere Umbauzeit'],
+    voraussetzungen: ['Ausreichend Stellfläche (≥ 30 m²)', 'Stabile Zuführung', 'Qualifizierter Instandhalter'],
+    naechsterSchritt: 'Layoutplanung mit Integrator, SPS-Anbindung prüfen',
+  },
+  {
+    id: 'pal-vollautomatisch',
+    scenarioId: 'palettierung',
+    kategorie: 'Robotik',
+    title: 'Vollautomatische Palettierlinie',
+    subtitle: 'Integriertes System mit Förder- und Stretchanlage',
+    beschreibung: 'End-to-End-Lösung: Förderband → Roboter → Stretch-Folie → Abtransport. Kein manueller Eingriff nötig.',
+    ziel: 'Vollständige Automatisierung des Palettierbereichs',
+    automatisierungsgrad: 98,
+    investitionMin: 280000, investitionMax: 500000,
+    umsetzungsdauer: '16–24 Wochen',
+    zeitersparnis: '4–5 Vollzeitstellen, ca. 8.000 h/Jahr',
+    roiPotenzial: '250.000–350.000 € jährliche Einsparung',
+    roiMonate: 28,
+    technischeKomplexitaet: 5,
+    integrationsaufwand: 4,
+    risiken: ['Hohe Anfangsinvestition', 'Komplexe Inbetriebnahme', 'Produktionsunterbrechung während Umbau'],
+    voraussetzungen: ['> 50 m² verfügbar', 'Stabile Produktion ohne häufige Formatwechsel', 'Projektmanager-Kapazität intern'],
+    naechsterSchritt: 'Investitionsrechnung und ROI-Freigabe; Ausschreibung an 3 Integratoren',
+  },
+
+  // ── Kundenservice AI-Agent ────────────────────────────────────────────────
+  {
+    id: 'ks-faq',
+    scenarioId: 'kundenservice',
+    kategorie: 'AI-Agent',
+    title: 'FAQ-Chatbot',
+    subtitle: 'Website + E-Mail · No-Code-Lösung',
+    beschreibung: 'Regelbasierter Chatbot mit AI-Erweiterung beantwortet Standard-FAQs auf der Website und filtert E-Mails vor.',
+    ziel: 'Erstantwortzeit von 4h auf < 2 min senken, Ticket-Volumen um 40% reduzieren',
+    automatisierungsgrad: 50,
+    investitionMin: 8000, investitionMax: 18000,
+    umsetzungsdauer: '2–4 Wochen',
+    zeitersparnis: '0,5–1 Vollzeitstelle, ca. 1.200 h/Jahr',
+    roiPotenzial: '30.000–50.000 € jährliche Einsparung',
+    roiMonate: 8,
+    technischeKomplexitaet: 1,
+    integrationsaufwand: 1,
+    risiken: ['Begrenzte Abdeckung komplexer Anfragen', 'Pflege der FAQ-Basis notwendig'],
+    voraussetzungen: ['Strukturierte FAQ-Datenbank vorhanden', 'Website-Zugang für Chatbot-Widget'],
+    naechsterSchritt: 'Pilottest mit 3 häufigsten Anfragetypen; 4-Wochen-Messung',
+  },
+  {
+    id: 'ks-email-agent',
+    scenarioId: 'kundenservice',
+    kategorie: 'AI-Agent',
+    title: 'AI-E-Mail-Agent',
+    subtitle: 'Liest, versteht, antwortet — mit Human Approval',
+    beschreibung: 'AI liest eingehende E-Mails, klassifiziert sie, formuliert Antwortvorschläge und sendet bei Standard-Fällen automatisch. Ausnahmen landen beim Menschen.',
+    ziel: '80% der E-Mails vollautomatisch beantworten, Mitarbeitende entlasten',
+    automatisierungsgrad: 80,
+    investitionMin: 25000, investitionMax: 55000,
+    umsetzungsdauer: '6–10 Wochen',
+    zeitersparnis: '1,5 Vollzeitstellen, ca. 2.400 h/Jahr',
+    roiPotenzial: '80.000–120.000 € jährliche Einsparung',
+    roiMonate: 12,
+    technischeKomplexitaet: 3,
+    integrationsaufwand: 2,
+    risiken: ['AI kann Nuancen missverstehen → Reputationsrisiko', 'Datenschutz bei Kunden-E-Mails prüfen'],
+    voraussetzungen: ['E-Mail-Zugang via API (Office 365 / Gmail)', 'Trainingsdaten: 500+ historische E-Mails'],
+    naechsterSchritt: 'Datenschutz-Check; Pilotbetrieb mit 30-Tage-Monitoring',
+    empfohlen: true,
+  },
+  {
+    id: 'ks-omnichannel',
+    scenarioId: 'kundenservice',
+    kategorie: 'AI-Agent',
+    title: 'Vollintegrierter Omnichannel-Agent',
+    subtitle: 'E-Mail + Chat + CRM + Ticket-System',
+    beschreibung: 'KI-Agent ist in alle Kommunikationskanäle integriert: E-Mail, Website-Chat, CRM und Ticket-System. Lernt kontinuierlich aus Feedback.',
+    ziel: 'Vollständige AI-Übernahme des First-Level-Supports',
+    automatisierungsgrad: 92,
+    investitionMin: 80000, investitionMax: 150000,
+    umsetzungsdauer: '12–20 Wochen',
+    zeitersparnis: '2,5 Vollzeitstellen, ca. 4.000 h/Jahr',
+    roiPotenzial: '150.000–220.000 € jährliche Einsparung',
+    roiMonate: 20,
+    technischeKomplexitaet: 4,
+    integrationsaufwand: 5,
+    risiken: ['Komplexe Integration in bestehende Systeme', 'Hoher initialer Trainingsaufwand', 'Change Management erforderlich'],
+    voraussetzungen: ['API-Zugang zu CRM und Ticket-System', 'IT-Kapazität für Integration', 'Datenschutzkonzept'],
+    naechsterSchritt: 'Systemaudit und Integrationsplanung; RFP an 3 AI-Softwareagenturen',
+  },
+
+  // ── PDF → ERP ─────────────────────────────────────────────────────────────
+  {
+    id: 'pdf-ocr',
+    scenarioId: 'pdf-erp',
+    kategorie: 'Dokument',
+    title: 'OCR + Regelbasierte Extraktion',
+    subtitle: 'Strukturierte Dokumente · Schnelle Umsetzung',
+    beschreibung: 'OCR-Software liest Dokumente und extrahiert Daten nach definierten Regeln (Position, Schlüsselwörter). Ideal für einheitliche Vorlagen.',
+    ziel: 'Manuelle Dateneingabe um 70% reduzieren',
+    automatisierungsgrad: 70,
+    investitionMin: 8000, investitionMax: 20000,
+    umsetzungsdauer: '3–6 Wochen',
+    zeitersparnis: '2 h/Tag → 500 h/Jahr',
+    roiPotenzial: '20.000–35.000 € jährliche Einsparung',
+    roiMonate: 8,
+    technischeKomplexitaet: 2,
+    integrationsaufwand: 2,
+    risiken: ['Funktioniert nur bei einheitlichen Dokumenten', 'Fehleranfällig bei schlechter Scan-Qualität'],
+    voraussetzungen: ['Einheitliche Dokumentvorlagen', 'Definierte Zielfelder im ERP'],
+    naechsterSchritt: 'Musteranalyse: 50 Dokumente prüfen auf Einheitlichkeit',
+  },
+  {
+    id: 'pdf-ai',
+    scenarioId: 'pdf-erp',
+    kategorie: 'Dokument',
+    title: 'AI-Dokumentenextraktion',
+    subtitle: 'LLM-basiert · Erkennt beliebige Layouts',
+    beschreibung: 'Großes Sprachmodell versteht Dokumente semantisch — erkennt Felder auch bei unbekannten Layouts und verschiedenen Lieferanten.',
+    ziel: '90%+ automatische Extraktion auch bei gemischten Dokumenten',
+    automatisierungsgrad: 90,
+    investitionMin: 18000, investitionMax: 40000,
+    umsetzungsdauer: '6–10 Wochen',
+    zeitersparnis: '3 h/Tag → 750 h/Jahr',
+    roiPotenzial: '35.000–55.000 € jährliche Einsparung',
+    roiMonate: 14,
+    technischeKomplexitaet: 3,
+    integrationsaufwand: 3,
+    risiken: ['Datenschutz bei Cloud-LLM-Anbietern prüfen', 'Laufende API-Kosten'],
+    voraussetzungen: ['API-Zugang zum ERP', 'Datenschutzkonzept für Dokumente mit personenbezogenen Daten'],
+    naechsterSchritt: 'Datenschutz-Check; Pilottest mit 100 historischen Dokumenten',
+    empfohlen: true,
+  },
+  {
+    id: 'pdf-hitl',
+    scenarioId: 'pdf-erp',
+    kategorie: 'Dokument',
+    title: 'Human-in-the-Loop Workflow',
+    subtitle: 'AI extrahiert · Mensch prüft und freigibt',
+    beschreibung: 'AI extrahiert Daten, zeigt Ergebnis mit Konfidenz-Score. Bei hoher Sicherheit automatisch, bei Unsicherheit → menschliche Prüfung.',
+    ziel: 'Maximale Genauigkeit + Automatisierung im Gleichgewicht',
+    automatisierungsgrad: 85,
+    investitionMin: 25000, investitionMax: 55000,
+    umsetzungsdauer: '8–14 Wochen',
+    zeitersparnis: '2,5 h/Tag → 625 h/Jahr',
+    roiPotenzial: '30.000–50.000 € jährliche Einsparung',
+    roiMonate: 18,
+    technischeKomplexitaet: 3,
+    integrationsaufwand: 4,
+    risiken: ['Höherer Entwicklungsaufwand für Review-Interface', 'Prozessänderung für Mitarbeitende'],
+    voraussetzungen: ['Review-Interface entwickeln oder kaufen', 'Mitarbeitende schulen'],
+    naechsterSchritt: 'Anforderungsworkshop mit Fachabteilung; Tool-Auswahl (Hyperscience, Rossum, etc.)',
+  },
+
+  // ── Qualitätsprüfung ──────────────────────────────────────────────────────
+  {
+    id: 'qp-regelbasiert',
+    scenarioId: 'qualitaetspruefung',
+    kategorie: 'Vision',
+    title: 'Kamera + Regelbasierte Bildverarbeitung',
+    subtitle: 'Keyence / Cognex · Schnelle Umsetzung',
+    beschreibung: 'Industriekameras mit klassischer Bildverarbeitungs-Software. Prüft Maße, Vorhandensein von Teilen und offensichtliche Defekte nach fixen Regeln.',
+    ziel: 'Fehlerrate von 2% auf < 0,3% senken bei 200 Teile/h',
+    automatisierungsgrad: 85,
+    investitionMin: 30000, investitionMax: 70000,
+    umsetzungsdauer: '6–10 Wochen',
+    zeitersparnis: '1 Vollzeitstelle Sichtkontrolle, ca. 1.600 h/Jahr',
+    roiPotenzial: '60.000–90.000 € (Einsparung + Qualitätsverbesserung)',
+    roiMonate: 16,
+    technischeKomplexitaet: 2,
+    integrationsaufwand: 2,
+    risiken: ['Keine Erkennung unbekannter Fehlertypen', 'Empfindlich gegenüber Beleuchtungsänderungen'],
+    voraussetzungen: ['Stabile Beleuchtung', 'Definierte akzeptable/nicht akzeptable Fehlermuster'],
+    naechsterSchritt: 'Mustermessung: Fehlertypen dokumentieren; Angebot bei Keyence/Cognex einholen',
+  },
+  {
+    id: 'qp-ai-vision',
+    scenarioId: 'qualitaetspruefung',
+    kategorie: 'Vision',
+    title: 'AI-Vision mit Deep Learning',
+    subtitle: 'Erkennt auch unbekannte Fehlertypen',
+    beschreibung: 'Neuronales Netz wird auf historischen Gut-/Schlechtteilen trainiert. Erkennt auch Fehlertypen, die bei der Konfiguration nicht bekannt waren.',
+    ziel: 'Fehlerrate < 0,05%, Null-Fehler-Qualität, MES-Integration',
+    automatisierungsgrad: 95,
+    investitionMin: 60000, investitionMax: 130000,
+    umsetzungsdauer: '10–16 Wochen',
+    zeitersparnis: '1,5 Vollzeitstellen, ca. 2.400 h/Jahr',
+    roiPotenzial: '100.000–160.000 € jährliche Einsparung',
+    roiMonate: 20,
+    technischeKomplexitaet: 4,
+    integrationsaufwand: 3,
+    risiken: ['Benötigt ausreichend Trainingsdaten (> 500 Fehlerbilder)', 'Modell muss bei neuen Produkten nachtrainiert werden'],
+    voraussetzungen: ['Historische Fehlerdokumentation mit Bildern', 'Stable, reproduzierbare Beleuchtungsanlage'],
+    naechsterSchritt: 'Datenaudit: Qualität und Menge vorhandener Fehlerdaten prüfen',
+    empfohlen: true,
+  },
+  {
+    id: 'qp-inline',
+    scenarioId: 'qualitaetspruefung',
+    kategorie: 'Vision',
+    title: 'Inline-Prüfsystem mit MES-Integration',
+    subtitle: 'End-to-End Qualitätsrückverfolgung',
+    beschreibung: 'Vollständig in die Produktionslinie integriertes System. Jedes Teil wird geprüft, Ergebnisse laufen direkt ins MES — lückenlose Traceability.',
+    ziel: 'Zertifizierungsreife Qualitätsdokumentation, Null-Fehler-Garantie',
+    automatisierungsgrad: 99,
+    investitionMin: 180000, investitionMax: 350000,
+    umsetzungsdauer: '20–32 Wochen',
+    zeitersparnis: '2 Vollzeitstellen + Ausschussreduzierung, ca. 4.000 h/Jahr',
+    roiPotenzial: '200.000–300.000 € jährliche Einsparung',
+    roiMonate: 30,
+    technischeKomplexitaet: 5,
+    integrationsaufwand: 5,
+    risiken: ['Hohe Anfangsinvestition', 'Komplexe MES-Integration', 'Produktionsstillstand während Umbau'],
+    voraussetzungen: ['MES-System vorhanden', 'IT-Kapazität für Integration', 'Qualitätsverantwortlicher als Projektleiter'],
+    naechsterSchritt: 'MES-Audit; Investitionsfreigabe durch Geschäftsführung; Ausschreibung',
+  },
+]
+
+export function getSolutionsForScenario(scenarioId: string): DemoSolution[] {
+  return DEMO_SOLUTIONS.filter((s) => s.scenarioId === scenarioId)
+}
+
+export function getSolutionById(id: string): DemoSolution | undefined {
+  return DEMO_SOLUTIONS.find((s) => s.id === id)
+}
