@@ -84,10 +84,10 @@ export default function HomePage() {
                 <ArrowRight size={16} />
               </Link>
               <Link
-                href="/use-cases"
+                href="/konfigurator"
                 className="inline-flex items-center justify-center gap-2 rounded-lg border border-border px-6 py-3.5 text-sm font-medium text-foreground hover:bg-surface-2 transition-colors"
               >
-                Use Cases ansehen
+                ROI berechnen
               </Link>
             </div>
             <p className="mt-4 text-xs text-muted-2">
