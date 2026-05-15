@@ -7,6 +7,7 @@ import { Menu, X } from 'lucide-react'
 
 const links = [
   { href: '/automatisierungs-check', label: 'Automatisierungs-Check' },
+  { href: '/konfigurator', label: 'Konfigurator' },
   { href: '/use-cases', label: 'Use Cases' },
   { href: '/projekt-starten', label: 'Projekt starten' },
   { href: '/kontakt', label: 'Kontakt' },
