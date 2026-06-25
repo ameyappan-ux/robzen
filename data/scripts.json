@@ -1,0 +1,627 @@
+{
+  "robzen": {
+    "startNode": "rw",
+    "nodes": {
+      "rw": {
+        "id": "rw",
+        "phase": "Start",
+        "title": "Wen hast du erreicht?",
+        "type": "choice",
+        "say": "",
+        "tip": "",
+        "signal": "",
+        "options": [
+          { "label": "Empfang / Sekretariat", "next": "rg" },
+          { "label": "Direkt die richtige Person", "next": "ro" }
+        ]
+      },
+      "rg": {
+        "id": "rg",
+        "phase": "Phase A — Einstieg",
+        "title": "Am Gatekeeper vorbei",
+        "type": "script",
+        "say": "Guten Tag, [Name] hier. Ich hätte eine kurze fachliche Frage zur Produktion – wer wäre bei Ihnen die richtige Ansprechperson? Der Produktions- oder Betriebsleiter vielleicht?",
+        "tip": "Nicht 'Kann ich mit dem Chef sprechen?' – das klingt nach Verkauf und wird geblockt.",
+        "signal": "",
+        "options": [
+          { "label": "Verbindet direkt", "next": "ro" },
+          { "label": "Fragt nach – worum geht es?", "next": "rg2" },
+          { "label": "Nicht erreichbar", "next": "rnr" }
+        ]
+      },
+      "rg2": {
+        "id": "rg2",
+        "phase": "Phase A — Einstieg",
+        "title": "Gatekeeper fragt nach",
+        "type": "script",
+        "say": "Ich baue eine Plattform für Automatisierungs- und KI-Projekte auf – ich möchte kurz vom Produktionsleiter lernen, wie das in der Praxis abläuft. Kein Verkauf, nur Fachfragen.",
+        "tip": "",
+        "signal": "",
+        "options": [
+          { "label": "Verbindet doch", "next": "ro" },
+          { "label": "Blockt trotzdem", "next": "rnr" }
+        ]
+      },
+      "rnr": {
+        "id": "rnr",
+        "phase": "Phase A — Einstieg",
+        "title": "Nicht erreichbar",
+        "type": "script",
+        "say": "Kein Problem – wann wäre der beste Zeitpunkt für einen kurzen Rückruf?",
+        "tip": "Rückrufzeit notieren. Nächster Kontakt.",
+        "signal": "",
+        "options": [
+          { "label": "Nächster Kontakt", "next": "rw" }
+        ]
+      },
+      "ro": {
+        "id": "ro",
+        "phase": "Phase B — Einstieg",
+        "title": "Die ersten 15 Sekunden",
+        "type": "script",
+        "say": "Guten Tag Herr/Frau [Name], ich bin [Name]. Ich baue gerade etwas im Bereich Automatisierung und KI auf – ich verkaufe Ihnen heute ausdrücklich nichts. Ich versuche nur von Praktikern zu lernen, wie das in der Realität abläuft. Haben Sie zwei Minuten? Wenn nicht, sagen Sie es mir einfach ehrlich.",
+        "tip": "'Ich verkaufe nichts' + 'Sagen Sie es mir ehrlich' – du gibst die Erlaubnis Nein zu sagen. Genau deshalb sagen die meisten Ja.",
+        "signal": "",
+        "options": [
+          { "label": "'Ja, kurz Zeit'", "next": "rq1" },
+          { "label": "'Wer sind Sie genau?'", "next": "rid" },
+          { "label": "'Keine Zeit gerade'", "next": "rnt" },
+          { "label": "'Kein Interesse'", "next": "rni" }
+        ]
+      },
+      "rid": {
+        "id": "rid",
+        "phase": "Phase B — Einstieg",
+        "title": "Sie fragen wer du bist",
+        "type": "script",
+        "say": "Ich bin Gründer – wir bauen eine Plattform, über die Unternehmen Automatisierungs- und KI-Projekte strukturiert ausschreiben können: ob Robotik, Produktionsautomatisierung oder KI-Agenten. Ich bin noch ganz am Anfang – deshalb rufe ich an, bevor ich irgendetwas baue.",
+        "tip": "Sag 'wir bauen' – nicht 'wir haben'. Ehrlich und macht dich interessant.",
+        "signal": "",
+        "options": [
+          { "label": "Neugierig, offen", "next": "rq1" },
+          { "label": "Immer noch skeptisch", "next": "rsk" }
+        ]
+      },
+      "rsk": {
+        "id": "rsk",
+        "phase": "Phase B — Einstieg",
+        "title": "Skeptisch – Verkaufsdruck rausnehmen",
+        "type": "script",
+        "say": "Das verstehe ich – Sie werden viel angerufen. Kein Folgeanruf wenn Sie das nicht wollen. Ich brauche nur 5 Minuten ehrliche Antworten von Praktikern wie Ihnen.",
+        "tip": "",
+        "signal": "",
+        "options": [
+          { "label": "Gibt nach", "next": "rq1" },
+          { "label": "Lehnt ab", "next": "rcn" }
+        ]
+      },
+      "rnt": {
+        "id": "rnt",
+        "phase": "Phase B — Einstieg",
+        "title": "Keine Zeit gerade",
+        "type": "script",
+        "say": "Absolut kein Problem – wann wäre ein besserer Moment? Ich brauche wirklich nur 10 Minuten.",
+        "tip": "",
+        "signal": "",
+        "options": [
+          { "label": "Gibt Termin", "next": "rq1" },
+          { "label": "Kein Interesse", "next": "rcn" }
+        ]
+      },
+      "rni": {
+        "id": "rni",
+        "phase": "Phase B — Einstieg",
+        "title": "Kein Interesse – Neugierhook",
+        "type": "script",
+        "say": "Verstehe – darf ich kurz fragen: Ist Automatisierung oder KI grundsätzlich kein Thema bei Ihnen, oder läuft das schon gut?",
+        "tip": "",
+        "signal": "",
+        "options": [
+          { "label": "Kein Thema", "next": "rcr" },
+          { "label": "Doch interessiert", "next": "rq1" }
+        ]
+      },
+      "rq1": {
+        "id": "rq1",
+        "phase": "Phase C — Fragen",
+        "title": "Frage 1 — Haben Sie investiert?",
+        "type": "script",
+        "say": "Haben Sie in den letzten zwei, drei Jahren mal in Automatisierung, Robotik oder KI investiert – oder ernsthaft darüber nachgedacht?",
+        "tip": "",
+        "signal": "",
+        "options": [
+          { "label": "Ja, gemacht", "next": "rq2" },
+          { "label": "Nachgedacht, nicht umgesetzt", "next": "rq1b" },
+          { "label": "Nein, kein Thema", "next": "rq1n" }
+        ]
+      },
+      "rq1b": {
+        "id": "rq1b",
+        "phase": "Phase C — Fragen",
+        "title": "Denken darüber nach",
+        "type": "script",
+        "say": "Interessant – was hält Sie davon ab? Was müsste passieren, damit das konkret wird?",
+        "tip": "Hier liegt oft der echte Schmerz – hör genau hin.",
+        "signal": "",
+        "options": [
+          { "label": "Erzählen vom Hindernis", "next": "rq4" },
+          { "label": "Kein konkreter Plan", "next": "rcr" }
+        ]
+      },
+      "rq1n": {
+        "id": "rq1n",
+        "phase": "Phase C — Fragen",
+        "title": "Kein Thema – Empfehlung holen",
+        "type": "script",
+        "say": "Kennen Sie jemanden in Ihrem Netzwerk, für den Automatisierung oder KI gerade akut ist?",
+        "tip": "",
+        "signal": "",
+        "options": [
+          { "label": "Gibt Empfehlung", "next": "rcr" },
+          { "label": "Keine", "next": "rcn" }
+        ]
+      },
+      "rq2": {
+        "id": "rq2",
+        "phase": "Phase C — Fragen",
+        "title": "Frage 2 — Wie Anbieter gefunden?",
+        "type": "script",
+        "say": "Erzählen Sie mal – wie sind Sie damals an die richtigen Anbieter gekommen? Schildern Sie mir den Ablauf.",
+        "tip": "Nicht unterbrechen. Zuhören und mitschreiben.",
+        "signal": "",
+        "options": [
+          { "label": "War schwer, viel Aufwand", "next": "rq3" },
+          { "label": "Lief okay – über Netzwerk", "next": "rq3m" }
+        ]
+      },
+      "rq3": {
+        "id": "rq3",
+        "phase": "Phase C — Fragen",
+        "title": "Frage 3 — Größter Krampf?",
+        "type": "script",
+        "say": "Was war dabei der größte Krampf? Die Anbietersuche, das Vergleichen, das Briefing, die Technik?",
+        "tip": "",
+        "signal": "Schmerz identifiziert. Lass sie ausreden – das ist dein Material.",
+        "options": [
+          { "label": "Anbieter finden", "next": "rq4" },
+          { "label": "Vergleichen", "next": "rq4" },
+          { "label": "Briefing", "next": "rq4" },
+          { "label": "Technik", "next": "rq4" }
+        ]
+      },
+      "rq3m": {
+        "id": "rq3m",
+        "phase": "Phase C — Fragen",
+        "title": "Lief über Netzwerk – weiterbohren",
+        "type": "script",
+        "say": "Und was war trotzdem nervig? Was würden Sie im Rückblick anders machen?",
+        "tip": "",
+        "signal": "",
+        "options": [
+          { "label": "Doch Schmerz gefunden", "next": "rq4" },
+          { "label": "Wirklich kein Schmerz", "next": "rsm" }
+        ]
+      },
+      "rq4": {
+        "id": "rq4",
+        "phase": "Phase C — Fragen",
+        "title": "Frage 4 — Zeit & Kosten",
+        "type": "script",
+        "say": "Wie lange hat das gedauert von 'wir brauchen was' bis 'es läuft'? Und was hat Sie das ungefähr gekostet – an Zeit und Nerven, nicht nur Geld?",
+        "tip": "",
+        "signal": "",
+        "options": [
+          { "label": "Antwort erhalten – weiter", "next": "rki" }
+        ]
+      },
+      "rki": {
+        "id": "rki",
+        "phase": "Phase D — KI-Check",
+        "title": "KI-Agenten Check 🆕",
+        "type": "script",
+        "say": "Beschäftigen Sie sich bei Ihnen auch mit KI – also Software-Automatisierung, nicht nur Maschinen? Oder ist das ein anderes Thema, anderer Ansprechpartner?",
+        "tip": "KI-Agenten haben oft andere Entscheider (IT/CDO statt Produktionsleiter). Das bestimmt, ob ROBZEN eine oder zwei Zielgruppen anspricht.",
+        "signal": "",
+        "options": [
+          { "label": "Ja, gleicher Entscheider", "next": "rki1" },
+          { "label": "Ja, anderer Ansprechpartner", "next": "rki2" },
+          { "label": "Nein, kein Thema", "next": "rsr" }
+        ]
+      },
+      "rki1": {
+        "id": "rki1",
+        "phase": "Phase D — KI-Check",
+        "title": "KI + Robotik – gleicher Käufer",
+        "type": "info",
+        "say": "→ Notieren: Unified Buyer. ROBZEN als Marktplatz für Robotik + Automatisierung + KI-Agenten positionierbar. Frag weiter: 'Was für KI-Projekte? Prozessautomatisierung, Datenanalyse, interne Agenten?'",
+        "tip": "",
+        "signal": "",
+        "options": [
+          { "label": "Weiter zur Lösung", "next": "rsr" }
+        ]
+      },
+      "rki2": {
+        "id": "rki2",
+        "phase": "Phase D — KI-Check",
+        "title": "KI – anderer Entscheider",
+        "type": "info",
+        "say": "→ Notieren: Zwei Entscheider (Produktion + IT/Digitalisierung). Frag nach dem Namen: 'Wer ist da der richtige Ansprechpartner?' – warmen Kontakt sichern.",
+        "tip": "",
+        "signal": "",
+        "options": [
+          { "label": "Weiter zur Lösung", "next": "rsr" }
+        ]
+      },
+      "rsr": {
+        "id": "rsr",
+        "phase": "Phase E — Lösung",
+        "title": "Lösung andeuten (erst jetzt!)",
+        "type": "script",
+        "say": "Stellen Sie sich vor, es gäbe einen Ort, wo Sie Ihr Problem einmal sauber beschreiben – ob Robotik, Automatisierung oder KI-Agenten – und automatisch mehrere passende, vergleichbare Angebote bekommen. Wie klingt das für Sie – ehrlich?",
+        "tip": "Erst JETZT die Lösung andeuten. Schmerz zuerst, Lösung danach. Nie umgekehrt.",
+        "signal": "",
+        "options": [
+          { "label": "Leuchten auf, erzählen weiter", "next": "rlt" },
+          { "label": "'Kommt drauf an'", "next": "rlm" },
+          { "label": "Kein Interesse", "next": "rcn" }
+        ]
+      },
+      "rsm": {
+        "id": "rsm",
+        "phase": "Phase E — Lösung",
+        "title": "Kein echter Schmerz – trotzdem testen",
+        "type": "script",
+        "say": "Stellen Sie sich vor: Sie beschreiben Ihr Problem einmal und bekommen automatisch vergleichbare Angebote – ob Maschine, Software oder KI-Agent. Was würde das vereinfachen?",
+        "tip": "",
+        "signal": "",
+        "options": [
+          { "label": "Interessiert", "next": "rlm" },
+          { "label": "Kein Bedarf", "next": "rcr" }
+        ]
+      },
+      "rlt": {
+        "id": "rlt",
+        "phase": "Phase E — Lösung",
+        "title": "Lackmustest — Frage 6",
+        "type": "script",
+        "say": "Wenn so etwas existiert hätte, als Sie das letzte Mal so ein Projekt hatten – hätten Sie es genutzt? Und was hätte es Ihnen wert sein müssen?",
+        "tip": "Zögern = verstecktes Nein. Augen leuchten + weiterreden = echtes Signal. Energie zählt, nicht Höflichkeit.",
+        "signal": "",
+        "options": [
+          { "label": "Klares Ja + Preisidee", "next": "rss" },
+          { "label": "Zögert / druckst", "next": "rcn" },
+          { "label": "Klares Nein", "next": "rcn" }
+        ]
+      },
+      "rlm": {
+        "id": "rlm",
+        "phase": "Phase E — Lösung",
+        "title": "Lukewarm – trotzdem testen",
+        "type": "script",
+        "say": "Wenn so was damals existiert hätte – hätten Sie es ausprobiert?",
+        "tip": "",
+        "signal": "",
+        "options": [
+          { "label": "Ja, wahrscheinlich", "next": "rss" },
+          { "label": "Eher nicht", "next": "rcr" }
+        ]
+      },
+      "rss": {
+        "id": "rss",
+        "phase": "Phase F — Abschluss",
+        "title": "⭐ Starkes Signal – Abschluss",
+        "type": "script",
+        "say": "Das hat mir extrem geholfen, danke. Darf ich mich wieder melden, wenn ich ein, zwei Schritte weiter bin? Und kennen Sie jemanden, für den dieses Thema gerade akut ist?",
+        "tip": "Die Empfehlungsfrage ist der unterschätzteste Satz. Ein warmer Kontakt ist 10x mehr wert als ein kalter.",
+        "signal": "STARKES SIGNAL. Jetzt unten Session speichern: starkes Signal = ja, Preisanker eintragen, Zitat festhalten.",
+        "options": [
+          { "label": "Nächster Kontakt", "next": "rw" }
+        ]
+      },
+      "rcr": {
+        "id": "rcr",
+        "phase": "Phase F — Abschluss",
+        "title": "Abschluss – Empfehlung holen",
+        "type": "script",
+        "say": "Das hat mir trotzdem geholfen. Kennen Sie jemanden, für den Automatisierung oder KI gerade akut ist?",
+        "tip": "",
+        "signal": "",
+        "options": [
+          { "label": "Nächster Kontakt", "next": "rw" }
+        ]
+      },
+      "rcn": {
+        "id": "rcn",
+        "phase": "Phase F — Abschluss",
+        "title": "Sauber beenden",
+        "type": "script",
+        "say": "Völlig in Ordnung – danke für Ihre Ehrlichkeit, das ist mehr wert als ein Höflichkeits-Ja. Alles Gute!",
+        "tip": "Kurz, respektvoll, fertig.",
+        "signal": "",
+        "options": [
+          { "label": "Nächster Kontakt", "next": "rw" }
+        ]
+      }
+    }
+  },
+  "zenmind": {
+    "startNode": "zw",
+    "nodes": {
+      "zw": {
+        "id": "zw",
+        "phase": "Start",
+        "title": "Wen kontaktierst du?",
+        "type": "choice",
+        "say": "",
+        "tip": "",
+        "signal": "",
+        "options": [
+          { "label": "Beratungsstelle", "next": "zbo" },
+          { "label": "Studierendenwerk", "next": "zzo" },
+          { "label": "AStA", "next": "zao" }
+        ]
+      },
+      "zbo": {
+        "id": "zbo",
+        "phase": "Phase B — Einstieg",
+        "title": "Einstieg – warm und demütig",
+        "type": "script",
+        "say": "Guten Tag Frau/Herr [Name], mein Name ist [Name]. Ich arbeite an einem Projekt zur frühen Entlastung von Studierenden bei psychischer Belastung – bevor ich irgendetwas baue, will ich von Menschen lernen, die täglich damit zu tun haben. Sie gehören genau dazu. Hätten Sie 10 Minuten?",
+        "tip": "Langsam. Ruhig. Keine Founder-Energie. Du bist zum Lernen hier, nicht zum Pitchen.",
+        "signal": "",
+        "options": [
+          { "label": "Ja, gerne", "next": "zbq1" },
+          { "label": "Wer sind Sie?", "next": "zid" },
+          { "label": "Keine Zeit", "next": "znt" },
+          { "label": "Skepsis gegenüber Tech", "next": "zts" }
+        ]
+      },
+      "zid": {
+        "id": "zid",
+        "phase": "Phase B — Einstieg",
+        "title": "Sie fragen wer du bist",
+        "type": "script",
+        "say": "Ich arbeite an einem Projekt zur digitalen Frühunterstützung für Studierende mit psychischer Belastung. Wir sind noch in der Konzeptphase – ich spreche mit Fachleuten wie Ihnen, weil ich nichts bauen will, das an der Realität vorbeigeht.",
+        "tip": "",
+        "signal": "",
+        "options": [
+          { "label": "Öffnet sich", "next": "zbq1" },
+          { "label": "Skepsis gegenüber Tech", "next": "zts" }
+        ]
+      },
+      "zts": {
+        "id": "zts",
+        "phase": "Phase B — Einstieg",
+        "title": "Skepsis gegenüber Tech-Lösungen",
+        "type": "script",
+        "say": "Das verstehe ich vollkommen – genau deshalb bin ich hier. Was wäre aus Ihrer Erfahrung das größte Risiko bei einem digitalen Angebot für Studierende?",
+        "tip": "Lass sie die Risiken nennen – das ist dein wertvollstes Designfeedback.",
+        "signal": "",
+        "options": [
+          { "label": "Erklärt Risiken, öffnet sich", "next": "zbq1" },
+          { "label": "Grundsätzlich dagegen", "next": "zcn" }
+        ]
+      },
+      "znt": {
+        "id": "znt",
+        "phase": "Phase B — Einstieg",
+        "title": "Keine Zeit",
+        "type": "script",
+        "say": "Natürlich – wann wäre ein besserer Moment? Oder darf ich Ihnen kurz eine Mail mit zwei Fragen schicken?",
+        "tip": "",
+        "signal": "",
+        "options": [
+          { "label": "Termin oder Mail-Erlaubnis", "next": "zbq1" },
+          { "label": "Abgewimmelt", "next": "zcn" }
+        ]
+      },
+      "zbq1": {
+        "id": "zbq1",
+        "phase": "Phase C — Fragen",
+        "title": "Frage 1 — Nachfrage-Entwicklung",
+        "type": "script",
+        "say": "Wie hat sich die Nachfrage nach Ihrer Beratung in den letzten Jahren entwickelt?",
+        "tip": "",
+        "signal": "",
+        "options": [
+          { "label": "Stark gestiegen", "next": "zbq2" },
+          { "label": "Stabil", "next": "zbq2" }
+        ]
+      },
+      "zbq2": {
+        "id": "zbq2",
+        "phase": "Phase C — Fragen",
+        "title": "Frage 2 — Wartezeiten",
+        "type": "script",
+        "say": "Wie lange warten Studierende aktuell auf einen Termin bei Ihnen?",
+        "tip": "Wochen bis Monate Wartezeit = Problem bestätigt.",
+        "signal": "",
+        "options": [
+          { "label": "Wochen bis Monate", "next": "zbq3" },
+          { "label": "Wenige Tage", "next": "zbq3" }
+        ]
+      },
+      "zbq3": {
+        "id": "zbq3",
+        "phase": "Phase C — Fragen",
+        "title": "Frage 3 — Wer fällt durchs Raster? (KERNFRAGE)",
+        "type": "script",
+        "say": "Gibt es Studierende, die viel zu spät kommen – erst wenn es schon eskaliert ist? Und was passiert mit denen, die Hilfe bräuchten, aber die Schwelle zu Ihnen nicht überschreiten?",
+        "tip": "",
+        "signal": "KERNFRAGE. Hier liegt der Wert von Zenmind. Notiere die Antwort wörtlich.",
+        "options": [
+          { "label": "Bestätigen – viele fallen durchs Raster", "next": "zbq4" },
+          { "label": "Kein großes Problem laut ihnen", "next": "zbq4" }
+        ]
+      },
+      "zbq4": {
+        "id": "zbq4",
+        "phase": "Phase E — Lösung",
+        "title": "Frage 4 — Lösung testen",
+        "type": "script",
+        "say": "Wenn es etwas Digitales gäbe, das Studierende früh abholt, kleine Schritte zeigt und sie bei Bedarf zu Ihnen lotst – wäre das eine Entlastung oder eher zusätzliche Arbeit?",
+        "tip": "",
+        "signal": "",
+        "options": [
+          { "label": "Entlastung – würde helfen", "next": "zbq5" },
+          { "label": "Skepsis – kommt drauf an", "next": "zbq5m" },
+          { "label": "Eher mehr Arbeit", "next": "zbq5m" }
+        ]
+      },
+      "zbq5": {
+        "id": "zbq5",
+        "phase": "Phase E — Lösung",
+        "title": "Frage 5 — Anforderungen & No-Gos",
+        "type": "script",
+        "say": "Was müsste so etwas unbedingt können – und was dürfte es auf gar keinen Fall tun?",
+        "tip": "Diese Antwort ist Gold fürs Produktdesign. Langsam fragen, viel zuhören.",
+        "signal": "STARKES SIGNAL wenn sie konkrete Anforderungen nennen.",
+        "options": [
+          { "label": "Geben konkrete Anforderungen", "next": "zbs" },
+          { "label": "Grundsätzlich dagegen", "next": "zcn" }
+        ]
+      },
+      "zbq5m": {
+        "id": "zbq5m",
+        "phase": "Phase E — Lösung",
+        "title": "Skepsis – was stört konkret?",
+        "type": "script",
+        "say": "Was müsste so etwas unbedingt können – und was dürfte es auf gar keinen Fall tun? Mich interessiert gerade das No-Go.",
+        "tip": "",
+        "signal": "",
+        "options": [
+          { "label": "Öffnen sich, konkrete Punkte", "next": "zbs" },
+          { "label": "Grundsätzliche Ablehnung", "next": "zcn" }
+        ]
+      },
+      "zbs": {
+        "id": "zbs",
+        "phase": "Phase F — Abschluss",
+        "title": "Abschluss – Beratungsstelle",
+        "type": "script",
+        "say": "Das hilft mir enorm – danke. Darf ich mich wieder melden? Und: Wer wäre die richtige Person für Thema Budget und Entscheidung?",
+        "tip": "Frag nach dem Warm-Intro zum Studierendenwerk – der direkteste Weg dahin.",
+        "signal": "",
+        "options": [
+          { "label": "Weiter zum Zahler-Gespräch", "next": "zzo" },
+          { "label": "Nächster Kontakt", "next": "zw" }
+        ]
+      },
+      "zzo": {
+        "id": "zzo",
+        "phase": "Phase B — Einstieg",
+        "title": "Einstieg – Studierendenwerk",
+        "type": "script",
+        "say": "Guten Tag Herr/Frau [Name], mein Name ist [Name]. Ich entwickle eine digitale Plattform zur frühen Entlastung von Studierenden bei psychischer Belastung – ich möchte verstehen, wie das Thema bei Ihnen steht und wie Entscheidungen dazu getroffen werden. Haben Sie kurz Zeit?",
+        "tip": "",
+        "signal": "",
+        "options": [
+          { "label": "Ja", "next": "zzq1" },
+          { "label": "Keine Zeit", "next": "znt" }
+        ]
+      },
+      "zzq1": {
+        "id": "zzq1",
+        "phase": "Phase C — Fragen",
+        "title": "Frage 1 — Strategische Priorität",
+        "type": "script",
+        "say": "Wie hoch steht das Thema psychische Gesundheit der Studierenden bei Ihnen strategisch auf der Agenda?",
+        "tip": "",
+        "signal": "",
+        "options": [
+          { "label": "Hoch – aktives Thema", "next": "zzq2" },
+          { "label": "Mittelmäßig / wenig Budget", "next": "zzq2" }
+        ]
+      },
+      "zzq2": {
+        "id": "zzq2",
+        "phase": "Phase C — Fragen",
+        "title": "Frage 2 — Entscheidungsweg (KERNFRAGE)",
+        "type": "script",
+        "say": "Wenn Sie so etwas einführen wollten – wer müsste zustimmen? Wer hält das Budget? Wie läuft so eine Entscheidung bei Ihnen ab?",
+        "tip": "",
+        "signal": "KERNFRAGE. Du willst hören: 'Das läuft über [Person X], Budget aus [Topf Y].' Das ist ein echtes Kaufsignal.",
+        "options": [
+          { "label": "Konkreter Weg + Budget genannt", "next": "zzds" },
+          { "label": "Vage – 'kommt drauf an'", "next": "zzq3" }
+        ]
+      },
+      "zzq3": {
+        "id": "zzq3",
+        "phase": "Phase C — Fragen",
+        "title": "Frage 3 — Frühere Anschaffungen",
+        "type": "script",
+        "say": "Gab es schon mal ähnliche Anschaffungen? In welcher Größenordnung bewegt sich so ein Budget bei Ihnen überhaupt?",
+        "tip": "",
+        "signal": "",
+        "options": [
+          { "label": "Geben Hausnummer", "next": "zzds" },
+          { "label": "Keine konkreten Zahlen", "next": "zzds" }
+        ]
+      },
+      "zzds": {
+        "id": "zzds",
+        "phase": "Phase D — Datenschutz",
+        "title": "Datenschutz – proaktiv ansprechen",
+        "type": "script",
+        "say": "Mir ist eines besonders wichtig, und ich sage es von mir aus: Die Hochschule würde nie Einzeldaten sehen. Nur anonymisierte Trends – und das auch nur ab einer Mindestgruppengröße. Keine Namen, keine Diagnosen, keine Überwachung. Wie klingt das für Sie?",
+        "tip": "Wer das Sensibelste selbst anspricht, wirkt vertrauenswürdig. Wer wartet, wirkt verdächtig.",
+        "signal": "",
+        "options": [
+          { "label": "Positiv – Vertrauen aufgebaut", "next": "zzs" },
+          { "label": "Weitere Bedenken", "next": "zzds2" }
+        ]
+      },
+      "zzds2": {
+        "id": "zzds2",
+        "phase": "Phase D — Datenschutz",
+        "title": "Tiefere Datenschutz-Fragen",
+        "type": "script",
+        "say": "Was genau besorgt Sie? Das nehme ich sehr ernst – DSGVO, keine Datenweitergabe, EU-Server. Was wäre für Sie ein absolutes No-Go?",
+        "tip": "",
+        "signal": "",
+        "options": [
+          { "label": "Zufrieden", "next": "zzs" },
+          { "label": "Grundsätzliche Ablehnung", "next": "zcn" }
+        ]
+      },
+      "zzs": {
+        "id": "zzs",
+        "phase": "Phase F — Abschluss",
+        "title": "⭐ Abschluss – Studierendenwerk",
+        "type": "script",
+        "say": "Das hilft mir enorm. Darf ich mich melden, wenn wir einen ersten Prototyp haben? Wäre eine kleine Pilotphase bei Ihnen denkbar?",
+        "tip": "",
+        "signal": "KAUFSIGNAL wenn Entscheidungsweg + Budget genannt und Pilot nicht abgelehnt. Session entsprechend markieren.",
+        "options": [
+          { "label": "Nächster Kontakt", "next": "zw" }
+        ]
+      },
+      "zao": {
+        "id": "zao",
+        "phase": "Phase B — Einstieg",
+        "title": "AStA – Nutzerperspektive holen",
+        "type": "script",
+        "say": "Ich entwickle eine digitale Unterstützungsplattform für Studierende bei psychischer Belastung und möchte die Studierendenperspektive verstehen. Ihr habt den direkten Kontakt zu euren Kommilitonen – habt ihr kurz Zeit?",
+        "tip": "AStA zahlt nicht – aber gibt Nutzerfeedback und manchmal Zugang zum Studierendenwerk.",
+        "signal": "",
+        "options": [
+          { "label": "Offen, erzählen", "next": "zbq3" },
+          { "label": "Kein Interesse", "next": "zcn" }
+        ]
+      },
+      "zcn": {
+        "id": "zcn",
+        "phase": "Phase F — Abschluss",
+        "title": "Sauber beenden",
+        "type": "script",
+        "say": "Völlig verständlich – danke für Ihre Offenheit. Falls Sie mehr erfahren möchten, freue ich mich über eine kurze Mail. Alles Gute!",
+        "tip": "",
+        "signal": "",
+        "options": [
+          { "label": "Nächster Kontakt", "next": "zw" }
+        ]
+      }
+    }
+  }
+}

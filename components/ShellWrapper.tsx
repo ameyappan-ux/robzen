@@ -4,7 +4,7 @@ import { usePathname } from 'next/navigation'
 import Nav from './Nav'
 import Footer from './Footer'
 
-const SHELL_HIDDEN_PREFIXES = ['/login', '/demo']
+const SHELL_HIDDEN_PREFIXES = ['/login', '/demo', '/callbase']
 
 export default function ShellWrapper({ children }: { children: React.ReactNode }) {
   const pathname = usePathname()
