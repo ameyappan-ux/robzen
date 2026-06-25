@@ -1,23 +1,8 @@
-import fs from 'fs'
-import path from 'path'
 import { randomUUID } from 'crypto'
-
-const CONTACTS_PATH = path.join(process.cwd(), 'data', 'contacts.json')
+import { readContacts, writeContacts } from '@/lib/callbase-db'
 
 function normalizePhone(phone: string): string {
   return phone.replace(/[^0-9]/g, '')
-}
-
-function readContacts(): Contact[] {
-  if (!fs.existsSync(CONTACTS_PATH)) {
-    fs.writeFileSync(CONTACTS_PATH, '[]', 'utf8')
-    return []
-  }
-  return JSON.parse(fs.readFileSync(CONTACTS_PATH, 'utf8'))
-}
-
-function writeContacts(contacts: Contact[]) {
-  fs.writeFileSync(CONTACTS_PATH, JSON.stringify(contacts, null, 2), 'utf8')
 }
 
 interface Contact {
@@ -36,7 +21,7 @@ interface Contact {
 
 export async function GET() {
   try {
-    const contacts = readContacts()
+    const contacts = await readContacts<Contact>()
     return Response.json(contacts)
   } catch {
     return Response.json({ error: 'Fehler beim Laden' }, { status: 500 })
@@ -46,7 +31,7 @@ export async function GET() {
 export async function POST(request: Request) {
   try {
     const body = await request.json()
-    const contacts = readContacts()
+    const contacts = await readContacts<Contact>()
 
     const normPhone = normalizePhone(body.phone || '')
     const normCompany = (body.company || '').toLowerCase().trim()
@@ -77,7 +62,7 @@ export async function POST(request: Request) {
     }
 
     contacts.push(contact)
-    writeContacts(contacts)
+    await writeContacts(contacts)
     return Response.json(contact, { status: 201 })
   } catch {
     return Response.json({ error: 'Fehler beim Erstellen' }, { status: 500 })

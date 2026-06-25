@@ -1,26 +1,34 @@
-import fs from 'fs'
-import path from 'path'
 import { randomUUID } from 'crypto'
+import { readCalls, writeCalls, readContacts, writeContacts } from '@/lib/callbase-db'
 
-const CALLS_PATH = path.join(process.cwd(), 'data', 'calls.json')
-const CONTACTS_PATH = path.join(process.cwd(), 'data', 'contacts.json')
-
-function readCalls() {
-  if (!fs.existsSync(CALLS_PATH)) {
-    fs.writeFileSync(CALLS_PATH, '[]', 'utf8')
-    return []
-  }
-  return JSON.parse(fs.readFileSync(CALLS_PATH, 'utf8'))
+interface Contact {
+  id: string
+  callIds: string[]
+  lastContactedAt: string
+  status: string
+  [key: string]: unknown
 }
 
-function readContacts() {
-  if (!fs.existsSync(CONTACTS_PATH)) return []
-  return JSON.parse(fs.readFileSync(CONTACTS_PATH, 'utf8'))
+interface Call {
+  id: string
+  contactId: string
+  project: string
+  date: string
+  path: string[]
+  outcome: {
+    problemConfirmed: string
+    energy: number
+    priceAnchor: string
+    strongSignal: boolean
+    referral: string
+  }
+  quotes: string
+  notes: string
 }
 
 export async function GET() {
   try {
-    const calls = readCalls()
+    const calls = await readCalls<Call>()
     return Response.json(calls)
   } catch {
     return Response.json({ error: 'Fehler beim Laden' }, { status: 500 })
@@ -30,9 +38,9 @@ export async function GET() {
 export async function POST(request: Request) {
   try {
     const body = await request.json()
-    const calls = readCalls()
+    const calls = await readCalls<Call>()
 
-    const call = {
+    const call: Call = {
       id: randomUUID(),
       contactId: body.contactId || '',
       project: body.project || 'robzen',
@@ -50,19 +58,19 @@ export async function POST(request: Request) {
     }
 
     calls.push(call)
-    fs.writeFileSync(CALLS_PATH, JSON.stringify(calls, null, 2), 'utf8')
+    await writeCalls(calls)
 
-    // Update contact: add callId + update lastContactedAt + status
     if (call.contactId) {
-      const contacts = readContacts()
-      const idx = contacts.findIndex((c: { id: string }) => c.id === call.contactId)
+      const contacts = await readContacts<Contact>()
+      const idx = contacts.findIndex((c) => c.id === call.contactId)
       if (idx !== -1) {
-        const contact = contacts[idx]
-        contact.callIds = [...(contact.callIds || []), call.id]
-        contact.lastContactedAt = call.date
-        contact.status = 'kontaktiert'
-        contacts[idx] = contact
-        fs.writeFileSync(CONTACTS_PATH, JSON.stringify(contacts, null, 2), 'utf8')
+        contacts[idx] = {
+          ...contacts[idx],
+          callIds: [...(contacts[idx].callIds || []), call.id],
+          lastContactedAt: call.date,
+          status: 'kontaktiert',
+        }
+        await writeContacts(contacts)
       }
     }
 
