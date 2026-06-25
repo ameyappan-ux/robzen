@@ -31,6 +31,7 @@ export default function CallMode({ scripts, contacts, onCallSaved }: Props) {
   const [callPath, setCallPath] = useState<string[]>([])
   const [outcome, setOutcome] = useState(EMPTY_OUTCOME)
   const [saving, setSaving] = useState(false)
+  const [callError, setCallError] = useState<string | null>(null)
 
   const projectScript = scripts?.[project]
   const currentNode: ScriptNode | null = projectScript?.nodes[currentNodeId] ?? null
@@ -54,6 +55,7 @@ export default function CallMode({ scripts, contacts, onCallSaved }: Props) {
   }, [form.phone, form.company, contacts, project])
 
   async function startCall() {
+    setCallError(null)
     let contact = dupWarning?.contact ?? null
 
     if (!contact) {
@@ -70,7 +72,26 @@ export default function CallMode({ scripts, contacts, onCallSaved }: Props) {
         return
       }
 
-      if (!res.ok) return
+      if (!res.ok) {
+        // Filesystem write fails on Vercel without KV — proceed with temp contact
+        setCallError('⚠ Kontakt wird nicht gespeichert (Vercel KV nicht eingerichtet). Anruf läuft trotzdem.')
+        const tempContact: Contact = {
+          id: 'temp-' + Date.now(),
+          project,
+          company: form.company,
+          contactName: form.contactName,
+          role: form.role,
+          phone: form.phone,
+          email: form.email,
+          createdAt: new Date().toISOString(),
+          lastContactedAt: new Date().toISOString(),
+          status: 'offen',
+          callIds: [],
+        }
+        setActiveContact(tempContact)
+        beginCallMode(tempContact)
+        return
+      }
       contact = await res.json()
     }
 
@@ -219,6 +240,10 @@ export default function CallMode({ scripts, contacts, onCallSaved }: Props) {
         >
           Anruf starten →
         </button>
+
+        {callError && (
+          <p className="text-xs text-yellow-400 text-center px-2">{callError}</p>
+        )}
       </div>
     )
   }
